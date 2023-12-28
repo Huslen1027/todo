@@ -75,13 +75,6 @@ body {
   height: 18px;
   color: black;
 }
-.priority {
-  width: fit-content;
-  padding: 4px 8px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  font-size: 12px;
-}
 .addBtn {
   display: flex;
   gap: 16px;
@@ -93,7 +86,89 @@ body {
 .addBtn:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.backdrop {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
 .away {
   width: 100%;
   height: 100%;
+}
+.modal {
+  display: flex;
+  position: absolute;
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  width: 400px;
+  flex-direction: column;
+  gap: 16px;
+}
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.div {
+  display: block;
+}
+.titleInput {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.titleP {
+  display: none;
+  color: red;
+  font-size: 12px;
+  padding: 4px 12px;
+}
+.despP {
+  display: none;
+  color: red;
+  font-size: 12px;
+  padding: 4px 12px;
+}
+
+.despInput {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  resize: none;
+  height: 100px;
+}
+.despLabel {
+  font-size: 14px;
+}
+.statusSelect {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.prioritySelect {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.addTaskBtn {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background-color: #000;
+  color: white;
+  cursor: pointer;
+  margin-top: 24px;
 }

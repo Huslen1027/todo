@@ -15,6 +15,8 @@ const boardtitle = [
   { title: "Done", id: "Done" },
 ];
 
+const priority = [{ id: "low" }, { id: "medium" }, { id: "high" }];
+
 function boardsF() {
   boardtitle.map((title) => {
     const board = document.createElement("div");
@@ -102,13 +104,17 @@ function boardsF() {
     const over = document.createElement("div");
     over.setAttribute("class", "over");
     card.appendChild(over);
+
+    // addCard.addEventListener("click", () => {
+    //   (backdrop.style.display = "none"), (modal.style.display = "none");
+    // });
   });
 }
 
 boardsF();
 
 const backdrop = document.createElement("div");
-backdrop.setAttribute("class", "backdrop");
+backdrop.setAttribute("class", "backdrop active");
 root.appendChild(backdrop);
 
 const away = document.createElement("div");
@@ -118,3 +124,96 @@ backdrop.appendChild(away);
 const modal = document.createElement("div");
 modal.setAttribute("class", "modal");
 backdrop.appendChild(modal);
+
+const modalContent = document.createElement("div");
+modalContent.setAttribute("class", "modalContent");
+modal.appendChild(modalContent);
+
+const addTask = document.createElement("h1");
+addTask.innerText = "Add Task";
+addTask.setAttribute("class", "addTask");
+modalContent.appendChild(addTask);
+
+const titleDiv = document.createElement("div");
+modalContent.appendChild(titleDiv);
+
+const titleLabel = document.createElement("label");
+titleLabel.innerText = "Title";
+titleDiv.appendChild(titleLabel);
+
+const titleInput = document.createElement("input");
+titleInput.setAttribute("class", "titleInput");
+titleDiv.appendChild(titleInput);
+
+const titleP = document.createElement("p");
+titleP.innerText = "Бөглөнө үү";
+titleP.setAttribute("class", "titleP");
+titleDiv.appendChild(titleP);
+
+const desp = document.createElement("div");
+desp.setAttribute("class", "div");
+modalContent.appendChild(desp);
+
+const despLabel = document.createElement("label");
+despLabel.innerText = "Description";
+despLabel.setAttribute("class", "despLabel");
+desp.appendChild(despLabel);
+
+const despInput = document.createElement("input");
+despInput.setAttribute("class", "despInput");
+desp.appendChild(despInput);
+
+const despP = document.createElement("p");
+despP.innerText = "Бөглөнө үү";
+despP.setAttribute("class", "despP");
+desp.appendChild(despP);
+
+const statusDiv = document.createElement("div");
+statusDiv.setAttribute("class", "div");
+modalContent.appendChild(statusDiv);
+
+const statusLabel = document.createElement("label");
+statusLabel.innerText = "status";
+statusLabel.setAttribute("class", "statusLabel");
+statusDiv.appendChild(statusLabel);
+
+const statusSelect = document.createElement("select");
+statusSelect.setAttribute("class", "statusSelect");
+statusDiv.appendChild(statusSelect);
+
+boardtitle.map((e) => {
+  const option = document.createElement("option");
+  option.setAttribute("value", e.id);
+  option.innerText = e.title;
+  statusSelect.appendChild(option);
+});
+
+const priorityDiv = document.createElement("div");
+modalContent.appendChild(priorityDiv);
+
+const prioLabel = document.createElement("label");
+prioLabel.innerText = "Priority";
+prioLabel.setAttribute("class", "prioLabel");
+priorityDiv.appendChild(prioLabel);
+
+const prioritySelect = document.createElement("select");
+prioritySelect.setAttribute("class", "prioritySelect");
+priorityDiv.appendChild(prioritySelect);
+
+priority.map((e) => {
+  const option = document.createElement("option");
+  option.setAttribute("value", e.id);
+  option.innerText = e.id;
+  prioritySelect.appendChild(option);
+});
+
+const addTaskBtn = document.createElement("button");
+addTaskBtn.setAttribute("class", "addTaskBtn");
+addTaskBtn.innerText = "Add Task";
+modalContent.appendChild(addTaskBtn);
+
+window.onclick = function (event) {
+  if (event.target == backdrop) {
+    backdrop.style.display = "none";
+  }
+};
