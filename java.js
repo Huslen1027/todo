@@ -105,21 +105,23 @@ function boardsF() {
     over.setAttribute("class", "over");
     card.appendChild(over);
 
-    // addCard.addEventListener("click", () => {
-    //   (backdrop.style.display = "none"), (modal.style.display = "none");
-    // });
+    addBtn.addEventListener("click", () => {
+      (backdrop.style.display = "flex"), (modal.style.display = "flex");
+
+
+    });
   });
 }
 
 boardsF();
 
 const backdrop = document.createElement("div");
-backdrop.setAttribute("class", "backdrop active");
+backdrop.setAttribute("class", "backdrop");
 root.appendChild(backdrop);
 
-const away = document.createElement("div");
-away.setAttribute("class", "away");
-backdrop.appendChild(away);
+// const away = document.createElement("div");
+// away.setAttribute("class", "away");
+// backdrop.appendChild(away);
 
 const modal = document.createElement("div");
 modal.setAttribute("class", "modal");
@@ -217,3 +219,63 @@ window.onclick = function (event) {
     backdrop.style.display = "none";
   }
 };
+let states=[];
+let MyObj = {
+  title:"",
+  description:"",
+  statuss:"",
+  priority:""
+}
+
+titleInput.addEventListener("change", (event)=>{
+  MyObj.title=event.target.value
+});
+despInput.addEventListener("change", (event)=>{
+  MyObj.description=event.target.value
+});
+statusSelect.addEventListener("change", (event)=>{
+  MyObj.statuss=event.target.value
+});
+prioritySelect.addEventListener("change", (event)=>{
+  MyObj.priority=event.target.value
+});
+const CardElement = (props) => {
+  const { id, title, description, priority, status } = props;
+
+  return `
+    <div class="card" draggable="true" data-id=${id}>
+      ${
+        status === "done"
+          ? `<div class="checked"><i class="fas fa-check"></i></div>`
+          : `<div class="done" onclick="makeDone('${id}')"><i class="fas fa-check"></i></div>`
+      }
+      <div class="details">
+        <h4>${title}</h4>
+        <p>${description}</p>
+        <div class="priority">
+          ${priority}
+        </div>
+      </div>
+      <div class="actions">
+        <div class="done" onclick="remove('${id}')">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="done" onclick="">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+
+
+addTaskBtn.addEventListener("click", (event)=>{
+
+    backdrop.style.display = "none";
+  
+   states.push(MyObj);
+   console.log(states);
+   localStorage.setItem("tod", JSON.stringify(states))
+   
+})
