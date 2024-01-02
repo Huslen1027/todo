@@ -40,53 +40,7 @@ function boardsF() {
 
     const card = document.createElement("div");
     card.setAttribute("class", "card");
-    // cards.appendChild(card);
-
-    const done = document.createElement("button");
-    done.setAttribute("class", "done");
-    card.appendChild(done);
-
-    const img = document.createElement("img");
-    img.setAttribute(
-      "src",
-      `https://cdn.iconscout.com/icon/free/png-256/free-tick-3391765-2825740.png`
-    );
-    img.setAttribute("class", "img");
-    done.appendChild(img);
-    const details = document.createElement("div");
-    details.setAttribute("class", "details");
-    card.appendChild(details);
-
-    // const detailsH4 = document.createElement("h4");
-    // detailsH4.setAttribute("class", "h4");
-    // details.appendChild(detailsH4);
-
-    // const detailsP = document.createElement("p");
-    // detailsP.setAttribute("class", "detailsP");
-    // details.appendChild(detailsP);
-    // detailsP.innerText = "";
-
-    const priority = document.createElement("div");
-    priority.setAttribute("class", "priority");
-    details.appendChild(priority);
-
-    const actions = document.createElement("div");
-    actions.setAttribute("class", "actions");
-    card.appendChild(actions);
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.setAttribute("class", "actionBtn");
-    actions.appendChild(deleteBtn);
-
-    const deleteI = document.createElement("i");
-    deleteBtn.appendChild(deleteI);
-
-    const edit = document.createElement("button");
-    edit.setAttribute("class", "edit");
-    actions.appendChild(edit);
-
-    const editI = document.createElement("i");
-    edit.appendChild(editI);
+    cards.appendChild(card);
 
     const addBtn = document.createElement("div");
     addBtn.setAttribute("class", "addBtn");
@@ -107,21 +61,16 @@ function boardsF() {
 
     addBtn.addEventListener("click", () => {
       (backdrop.style.display = "flex"), (modal.style.display = "flex");
-
-
     });
   });
 }
 
 boardsF();
+// Modal window HTML creation
 
 const backdrop = document.createElement("div");
 backdrop.setAttribute("class", "backdrop");
 root.appendChild(backdrop);
-
-// const away = document.createElement("div");
-// away.setAttribute("class", "away");
-// backdrop.appendChild(away);
 
 const modal = document.createElement("div");
 modal.setAttribute("class", "modal");
@@ -162,6 +111,7 @@ despLabel.setAttribute("class", "despLabel");
 desp.appendChild(despLabel);
 
 const despInput = document.createElement("input");
+
 despInput.setAttribute("class", "despInput");
 desp.appendChild(despInput);
 
@@ -209,7 +159,8 @@ priority.map((e) => {
   prioritySelect.appendChild(option);
 });
 
-const addTaskBtn = document.createElement("button");
+const addTaskBtn = document.createElement("input");
+addTaskBtn.setAttribute("type", "button");
 addTaskBtn.setAttribute("class", "addTaskBtn");
 addTaskBtn.innerText = "Add Task";
 modalContent.appendChild(addTaskBtn);
@@ -219,63 +170,83 @@ window.onclick = function (event) {
     backdrop.style.display = "none";
   }
 };
-let states=[];
-let MyObj = {
-  title:"",
-  description:"",
-  statuss:"",
-  priority:""
+
+let myArray1 = [];
+let myArray2 = [];
+let myArray3 = [];
+let myArray4 = [];
+addTaskBtn.addEventListener("click", addNewTask);
+
+function addNewTask() {
+  // receive information from modalContent
+  let tempObject = {
+    Title: titleInput.value,
+    Description: despInput.value,
+    priority: prioritySelect.value,
+  };
+  myArray1.push(tempObject);
+  // HTML deeree array dotorh medeellee array.map ashiglaad gargaj ireh
+
+  myArray1.map((e) => {
+    let cardd = document.createElement("div");
+    cardd.setAttribute("class", "cardd");
+    card.appendChild(cardd);
+
+    done.setAttribute("class", "done");
+    const done = document.createElement("button");
+    cardd.appendChild(done);
+    const img = document.createElement("img");
+    img.setAttribute(
+      "src",
+      `https://cdn.iconscout.com/icon/free/png-256/free-tick-3391765-2825740.png`
+    );
+    img.setAttribute("class", "img");
+    done.appendChild(img);
+    const details = document.createElement("div");
+    details.setAttribute("class", "details");
+    cardd.appendChild(details);
+
+    const detailsH4 = document.createElement("h4");
+    detailsH4.setAttribute("class", "h4");
+    detailsH4.innerText = e.Title;
+    details.appendChild(detailsH4);
+
+    const detailsP = document.createElement("p");
+    detailsP.setAttribute("class", "detailsP");
+    details.appendChild(detailsP);
+    detailsP.innerText = e.Description;
+
+    const priority = document.createElement("div");
+    priority.setAttribute("class", "Priority");
+    details.appendChild(priority);
+    priority.innerText = e.priority;
+
+    const actions = document.createElement("div");
+    actions.setAttribute("class", "actions");
+    cardd.appendChild(actions);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("class", "deleteBtn");
+    actions.appendChild(deleteBtn);
+
+    const deleteI = document.createElement("img");
+    deleteI.setAttribute(
+      "src",
+      `https://cdn-icons-png.flaticon.com/512/657/657059.png`
+    );
+    deleteI.setAttribute("class", "deleteI");
+    deleteBtn.appendChild(deleteI);
+
+    const edit = document.createElement("button");
+    edit.setAttribute("class", "edit");
+    actions.appendChild(edit);
+
+    const editI = document.createElement("img");
+    editI.setAttribute(
+      "src",
+      `https://cdn-icons-png.flaticon.com/512/1827/1827933.png`
+    );
+    editI.setAttribute("class", "editI");
+    edit.appendChild(editI);
+  });
 }
-
-titleInput.addEventListener("change", (event)=>{
-  MyObj.title=event.target.value
-});
-despInput.addEventListener("change", (event)=>{
-  MyObj.description=event.target.value
-});
-statusSelect.addEventListener("change", (event)=>{
-  MyObj.statuss=event.target.value
-});
-prioritySelect.addEventListener("change", (event)=>{
-  MyObj.priority=event.target.value
-});
-const CardElement = (props) => {
-  const { id, title, description, priority, status } = props;
-
-  return `
-    <div class="card" draggable="true" data-id=${id}>
-      ${
-        status === "done"
-          ? `<div class="checked"><i class="fas fa-check"></i></div>`
-          : `<div class="done" onclick="makeDone('${id}')"><i class="fas fa-check"></i></div>`
-      }
-      <div class="details">
-        <h4>${title}</h4>
-        <p>${description}</p>
-        <div class="priority">
-          ${priority}
-        </div>
-      </div>
-      <div class="actions">
-        <div class="done" onclick="remove('${id}')">
-          <i class="fa-solid fa-xmark"></i>
-        </div>
-        <div class="done" onclick="">
-          <i class="fa-solid fa-pen-to-square"></i>
-        </div>
-      </div>
-    </div>
-  `;
-};
-
-
-
-addTaskBtn.addEventListener("click", (event)=>{
-
-    backdrop.style.display = "none";
-  
-   states.push(MyObj);
-   console.log(states);
-   localStorage.setItem("tod", JSON.stringify(states))
-   
-})
