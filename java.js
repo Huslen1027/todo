@@ -159,7 +159,7 @@ priority.map((e) => {
   prioritySelect.appendChild(option);
 });
 
-const addTaskBtn = document.createElement("input");
+const addTaskBtn = document.createElement("button");
 addTaskBtn.setAttribute("type", "button");
 addTaskBtn.setAttribute("class", "addTaskBtn");
 addTaskBtn.innerText = "Add Task";
@@ -175,7 +175,6 @@ let myArray1 = [];
 let myArray2 = [];
 let myArray3 = [];
 let myArray4 = [];
-addTaskBtn.addEventListener("click", addNewTask);
 
 function addNewTask() {
   // receive information from modalContent
@@ -185,16 +184,17 @@ function addNewTask() {
     priority: prioritySelect.value,
   };
   myArray1.push(tempObject);
-  // HTML deeree array dotorh medeellee array.map ashiglaad gargaj ireh
 
+  // HTML deeree array dotorh medeellee array.map ashiglaad gargaj ireh
   myArray1.map((e) => {
-    let cardd = document.createElement("div");
+    console.log(myArray1);
+    const cardd = document.createElement("div");
     cardd.setAttribute("class", "cardd");
     card.appendChild(cardd);
-
-    done.setAttribute("class", "done");
     const done = document.createElement("button");
+    done.setAttribute("class", "done");
     cardd.appendChild(done);
+
     const img = document.createElement("img");
     img.setAttribute(
       "src",
@@ -229,14 +229,6 @@ function addNewTask() {
     deleteBtn.setAttribute("class", "deleteBtn");
     actions.appendChild(deleteBtn);
 
-    const deleteI = document.createElement("img");
-    deleteI.setAttribute(
-      "src",
-      `https://cdn-icons-png.flaticon.com/512/657/657059.png`
-    );
-    deleteI.setAttribute("class", "deleteI");
-    deleteBtn.appendChild(deleteI);
-
     const edit = document.createElement("button");
     edit.setAttribute("class", "edit");
     actions.appendChild(edit);
@@ -250,3 +242,5 @@ function addNewTask() {
     edit.appendChild(editI);
   });
 }
+
+addTaskBtn.addEventListener("click", addNewTask);

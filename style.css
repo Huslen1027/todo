@@ -52,6 +52,14 @@ body {
   flex-direction: column;
   gap: 8px;
 }
+.card {
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  cursor: grab;
+  display: flex;
+  gap: 12px;
+}
 .cardd {
   padding: 8px;
   border-radius: 4px;
